@@ -1,0 +1,14 @@
+/* Chrome, Safari, Edge, Opera */
+#codigoPostal::-webkit-outer-spin-button,
+#codigoPostal::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+/* input[type=number] {
+  -moz-appearance: textfield;
+} */
+input#codigoPostal {
+    -moz-appearance: textfield;
+}

@@ -1,0 +1,89 @@
+<div class="container">
+	<h4>Formularios por <small>Plantilla</small></h4>
+	<hr>
+	<form autocomplete="off" #form="ngForm" (ngSubmit)="guardar(form)">
+		<div>
+			<div class="form-group row">
+				<label class="col-2 col-form-label">Nombre:</label>
+				<div class="col-8">
+					<input #nombre="ngModel" class="form-control" name="nombre" [ngModel]="usuario.nombre" [class.is-invalid]="nombre.invalid && nombre.touched" type="text" placeholder="Su Nombre" required minlength="4" />
+					<small *ngIf="nombre.invalid && nombre.touched" class="form-text text-danger">Campo obligatorio. Escriba mínimo 4 caracteres.</small>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-2 col-form-label">Apellidos:</label>
+				<div class="col-8">
+					<input #apellidos="ngModel" class="form-control" name="apellidos" [ngModel]="usuario.apellidos" [class.is-invalid]="apellidos.invalid && apellidos.touched" type="text" placeholder="Sus Apellidos" required minlength="5" />
+					<small *ngIf="apellidos.invalid && apellidos.touched" class="form-text text-danger">Campo obligatorio. Escriba mínimo 5 caracteres.</small>
+				</div>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-2 col-form-label">Correo electrónico:</label>
+			<div class="col-8">
+				<input #correo="ngModel" class="form-control" name="correo" [ngModel]="usuario.correo" [class.is-invalid]="correo.invalid && correo.touched" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" placeholder="Correo electrónico" required />
+				<small *ngIf="correo.invalid && correo.touched" class="form-text text-danger">Campo obligatorio. Escriba un correo válido.</small>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-2 col-form-label">País:</label>
+			<div class="col-8">
+				<select name="pais" [disabled]="paises.length === 0" [ngModel]="usuario.pais" [class.is-invalid]="pais.invalid && pais.touched" class="form-control" #pais="ngModel" required>
+					<option *ngFor="let pais of paises" [value]="pais.codigo">
+						{{ pais.nombre }}
+					</option>
+				</select>
+				<!-- <small *ngIf="paises.invalid && paises.touched" class="form-text text-danger">Campo obligatorio. Seleccione un páis.</small> -->
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-2 col-form-label">Genero:</label>
+			<div class="col-8">
+				<div class="form-check form-check-inline">
+					<input type="radio" class="form-check-input" name="genero" #genero="ngModel" [ngModel]="usuario.genero" [class.is-invalid]="genero.invalid && genero.touched" value="Masculino" required />
+					<label class="form-check-label">Masculino</label>
+				</div>
+				<div class="form-check form-check-inline">
+					<input type="radio" class="form-check-input" name="genero" #genero="ngModel" [ngModel]="usuario.genero" [class.is-invalid]="genero.invalid && genero.touched" value="Femenino" required/>
+					<label class="form-check-label">Femenino</label>
+				</div>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-2 col-form-label">&nbsp;</label>
+			<div class="input-group col-md-8">
+				<button type="submit" class="btn btn-outline-primary btn-block">Guardar</button>
+			</div>
+		</div>
+	</form>
+	<hr />
+	<div>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Apellidos</th>
+					<th>Correo electrónico</th>
+					<th>País</th>
+					<th>Genero</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td scope="row">{{ name }}</td>
+					<td>{{ lastname }}</td>
+					<td>{{ email }}</td>
+					<td>{{ country }}</td>
+					<td>{{ gender }}</td>
+				</tr>
+				<tr>
+					<td scope="row"></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
